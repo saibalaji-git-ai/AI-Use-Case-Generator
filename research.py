@@ -46,19 +46,15 @@ class ResearchAgent:
         return trends
 
     def analyze_data(self):
-        print(f"Conducting research on {self.company_name}...")
-        print(f"{self.company_name} Offerings and Strategic Focus:\n")
-        for offering in self.offerings:
-            print(f"- {offering}")
+        """Analyzes and returns the collected data about the company and industry."""
+        research_data = {
+            "offerings": self.offerings,
+            "strategic_focus": self.strategic_focus,
+            "industry_trends": self.industry_trends
+        }
         
-        print("\nStrategic Focus Areas:\n")
-        for focus in self.strategic_focus:
-            print(f"- {focus}")
+        return research_data
 
-        print(f"\nConducting research on {self.industry} industry...\n")
-        print(f"{self.industry} Industry Trends in AI/ML:\n")
-        for trend in self.industry_trends:
-            print(f"- {trend}")
 
 
 # Example usage
