@@ -19,8 +19,12 @@ def main():
             research_agent = ResearchAgent(company_name, industry)
             research_agent.collect_data()
             research_data = research_agent.analyze_data()
-            st.write("Collected Data:")
-            st.write(research_data)
+            
+            if research_data:
+                st.write("Collected Data:")
+                st.write(research_data)
+            else:
+                st.error("No research data collected.")
 
             # Step 2: Use Case Generation Phase
             st.subheader("Step 2: Use Case Generation Phase")
@@ -41,18 +45,20 @@ def main():
             proposal_agent = ProposalGeneratorAgent(company_name, generated_use_cases, resource_links)
             proposal_text = proposal_agent.generate_final_proposal()
 
-            # Display the proposal
-            st.write("AI Proposal Generated:")
-            st.write(proposal_text)
+            if proposal_text:
+                st.write("AI Proposal Generated:")
+                st.write(proposal_text)
 
-            # Provide option to download proposal as a text file
-            buffer = io.StringIO()
-            buffer.write(proposal_text)
-            buffer.seek(0)
-            st.download_button(label="Download AI Proposal",
-                               data=buffer,
-                               file_name=f"{company_name}_AI_Proposal.txt",
-                               mime="text/plain")
+                # Provide option to download proposal as a text file
+                buffer = io.StringIO()
+                buffer.write(proposal_text)
+                buffer.seek(0)
+                st.download_button(label="Download AI Proposal",
+                                   data=buffer,
+                                   file_name=f"{company_name}_AI_Proposal.txt",
+                                   mime="text/plain")
+            else:
+                st.error("No proposal generated.")
 
         except Exception as e:
             st.error(f"An error occurred: {e}")
