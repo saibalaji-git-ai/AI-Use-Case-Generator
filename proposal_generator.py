@@ -5,15 +5,20 @@ class ProposalGeneratorAgent:
         self.resource_links = resource_links
 
     def generate_final_proposal(self):
-        print(f"Final Proposal for {self.company_name}\n")
-        
-        print("Top AI/ML Use Cases:\n")
+         """Generates and returns the final proposal for the company."""
+        proposal_text = f"AI Proposal for {self.company_name}\n"
+        proposal_text += "=" * 40 + "\n\n"
+        proposal_text += "Executive Summary:\n"
+        proposal_text += f"The proposal aims to integrate AI/ML technologies into {self.company_name}'s operations.\n\n"
+        proposal_text += "Proposed Use Cases:\n"
         for idx, use_case in enumerate(self.use_cases, 1):
-            print(f"{idx}. {use_case}")
-
-        print("\nRelevant Datasets and Resources:\n")
-        for idx, (use_case, link) in enumerate(self.resource_links, 1):
-            print(f"{idx}. {use_case}: {link}")
+            proposal_text += f"{idx}. {use_case}\n"
+        
+        proposal_text += "\nResource Links:\n"
+        for use_case, link in self.resource_links:
+            proposal_text += f"- {use_case}: {link}\n"
+        
+        return proposal_text
 
     def save_to_file(self, filename="final_proposal.txt"):
         with open(filename, 'w') as f:
